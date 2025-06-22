@@ -1,0 +1,18 @@
+<div class="backdrop" *ngIf="getBackdropUrl()" [style.backgroundImage]="'url(' + getBackdropUrl() +')'"></div>
+
+<div class="movie-detail-container">
+  <img [src]="getPosterUrl()" [alt]="movie.title" class="poster">
+
+  <div class="details">
+    <h1>{{ movie.title }}</h1>
+    <p class="tagline" *ngIf="movie.tagline">{{ movie.tagline }}</p>
+    <p><strong>Rating:</strong> ⭐ {{ movie.vote_average | number: '1.1-1' }}</p>
+    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+    <p><strong>Genres: </strong>
+      <span *ngFor="let genre of movie.genres; last as isLast">
+        {{ genre.name }}<span *ngIf="!isLast">, </span>
+      </span>
+    </p>
+    <p class="overview">{{ movie.overview }}</p>
+  </div>
+</div>

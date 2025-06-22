@@ -1,0 +1,61 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.welcome-message {
+  text-align: center;
+  color: #ddd;
+}
+
+.home-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.home-description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #aaa;
+  max-width: 600px;
+  margin-left: auto;
+  margin: auto;
+  margin-bottom: 3.5rem;
+}
+
+.search-results-title {
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #aaa;
+  font-style: italic;
+  margin: 0;
+}
+
+.no-results {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #bfbfbf;
+  font-style: italic;
+  margin-top: 4rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
