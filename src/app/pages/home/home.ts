@@ -6,6 +6,7 @@ import { MovieListComponent } from '../../components/movie-list/movie-list';
 import { Movie } from '../../models/movie';
 import { TmdbService } from '../../services/tmdb-service';
 import { PaginationComponent } from '../../components/pagination/pagination';
+import { forkJoin, timer } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +29,7 @@ export class HomePage implements OnInit {
   totalPages: number = 1;
   currentQuery: string = '';
   hasSearched: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private tmdb: TmdbService) {}
 
@@ -41,13 +43,18 @@ export class HomePage implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     this.currentQuery = query;
     this.currentPage = page;
     this.hasSearched = true;
 
-    this.tmdb.searchMovies(query, page).subscribe((res) => {
+    const apiCall$ = this.tmdb.searchMovies(query, page);
+    const delay$ = timer(500);
+
+    forkJoin([apiCall$, delay$]).subscribe(([res]) => {
       this.movies = res.results;
       this.totalPages = res.total_pages;
+      this.isLoading = false;
     });
   }
 
@@ -60,18 +67,25 @@ export class HomePage implements OnInit {
   }
 
   loadPopularMovies(page: number = 1) {
+    this.isLoading = true;
     this.currentPage = page;
 
-    this.tmdb.getPopularMovies(page).subscribe((res) => {
+    const apiCall$ = this.tmdb.getPopularMovies(page);
+    const delay$ = timer(200);
+
+    forkJoin([apiCall$, delay$]).subscribe(([res]) => {
       this.popularMovies = res.results;
       this.totalPages = res.total_pages;
+      this.isLoading = false;
     });
   }
 
   goToPage(page: number) {
     if (page < 1 || page > this.totalPages) return;
 
-    if (this.currentQuery) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (this.hasSearched) {
       this.onSearch(this.currentQuery, page);
     } else {
       this.loadPopularMovies(page);

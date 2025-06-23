@@ -1,5 +1,8 @@
 <form (submit)="submitSearch(); $event.preventDefault()" class="search-form">
-  <input type="text" [(ngModel)]="query" name="query" placeholder="Search for movies..." class="search-input">
+  <div class="input-wrapper">
+    <input type="text" [(ngModel)]="query" name="query" placeholder="Search for movies..." class="search-input">
+    <span class="clear-icon" *ngIf="query.trim()" (click)="clearSearch()">x</span>
+  </div>
+
   <button type="submit" class="search-button">Search</button>
-  <button type="button" class="clear-button" *ngIf="query.trim()" (click)="clearSearch()">Clear</button>
 </form>

@@ -6,23 +6,29 @@
     <p class="home-description">Search for your favorite movies using the search bar above or explore popular movies
       below.</p>
 
-    <ng-container *ngIf="movies || popularMovies; else noSearchResults">
-      <app-pagination *ngIf="totalPages > 1" [currentPage]="currentPage" [totalPages]="totalPages"
-        (pageChange)="goToPage($event)"></app-pagination>
+    <div class="loading-spinner" *ngIf="isLoading">
+      <div class="spinner"></div>
+    </div>
 
-      <ng-container *ngIf="hasSearched">
-        <ng-container *ngIf="movies.length > 0; else noSearchResults">
-          <h2 class="search-results-title">Search results for "{{ currentQuery }}"</h2>
-          <app-movie-list [movies]="movies"></app-movie-list>
+    <ng-container *ngIf="!isLoading">
+      <ng-container *ngIf="movies || popularMovies; else noSearchResults">
+        <app-pagination *ngIf="totalPages > 1" [currentPage]="currentPage" [totalPages]="totalPages"
+          (pageChange)="goToPage($event)"></app-pagination>
+
+        <ng-container *ngIf="hasSearched">
+          <ng-container *ngIf="movies.length > 0; else noSearchResults">
+            <h2 class="search-results-title">Search results for "{{ currentQuery }}"</h2>
+            <app-movie-list [movies]="movies"></app-movie-list>
+          </ng-container>
         </ng-container>
-      </ng-container>
 
-      <ng-container *ngIf="!hasSearched">
-        <app-movie-list [movies]="popularMovies"></app-movie-list>
-      </ng-container>
+        <ng-container *ngIf="!hasSearched">
+          <app-movie-list [movies]="popularMovies"></app-movie-list>
+        </ng-container>
 
-      <app-pagination *ngIf="totalPages > 1" [currentPage]="currentPage" [totalPages]="totalPages"
-        (pageChange)="goToPage($event)"></app-pagination>
+        <app-pagination *ngIf="totalPages > 1" [currentPage]="currentPage" [totalPages]="totalPages"
+          (pageChange)="goToPage($event)"></app-pagination>
+      </ng-container>
     </ng-container>
 
     <ng-template #noSearchResults>

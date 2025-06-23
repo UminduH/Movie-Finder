@@ -1,5 +1,5 @@
 <a [routerLink]="['/movie', movie.id]" class="card">
-  <img [src]="getPosterUrl()" [alt]="movie.title">
+  <img [src]="getPosterUrl()" [alt]="movie.title" loading="lazy">
   <div class="card-info">
     <h3>{{ movie.title }}</h3>
     <p>⭐ {{ movie.vote_average | number: '1.1-1' }}</p>

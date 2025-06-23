@@ -9,12 +9,15 @@
   padding: 0 1rem;
 }
 
+.input-wrapper {
+  position: relative;
+  width: 300px;
+}
+
 .search-input {
   font-family: "Poppins", sans-serif;
-  flex: 1 1 250px;
-  min-width: 200px;
-  max-width: 400px;
-  padding: 0.6rem 1rem;
+  width: 100%;
+  padding: 10px 40px 10px 10px;
   font-size: 1rem;
   border: 2px solid #444;
   border-radius: 6px;
@@ -26,6 +29,21 @@
 
 .search-input:focus {
   border-color: #2d7be5;
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #867c7c;
+  user-select: none;
+}
+
+.clear-icon:hover {
+  color: #6e6666;
 }
 
 button {
