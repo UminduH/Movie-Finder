@@ -12,4 +12,5 @@ export interface MovieDetails extends Movie {
   genres: { id: number; name: string }[];
   runtime: number;
   tagline: string;
+  trailerUrl: string;
 }
