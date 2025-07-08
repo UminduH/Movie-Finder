@@ -1,4 +1,6 @@
-# MovieSearchApp
+Live Demo: https://simple-movie-finder-app.netlify.app/
+
+# Movie Finder
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
 
